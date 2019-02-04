@@ -3,4 +3,8 @@ class Api::V1::ItemsController < ApplicationController
   def index
     render json: Item.all
   end
+
+  def show
+    render json: { user: UserSerializer.new(current_user) }, status: :accepted
+  end
 end
