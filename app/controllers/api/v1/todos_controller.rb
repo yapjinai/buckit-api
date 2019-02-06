@@ -6,7 +6,6 @@ class Api::V1::TodosController < ApplicationController
 
   def create
     @todo = Todo.create(todo_params)
-    byebug
     if @todo.valid?
       render json: { todo: TodoSerializer.new(@todo) }, status: :created
     else
@@ -15,9 +14,9 @@ class Api::V1::TodosController < ApplicationController
   end
 
   def destroy
-    @note = Note.find(params[:id])
-    @note.destroy
-    render 'deleted note'
+    @todo = Todo.find(params[:id])
+    @todo.destroy
+    render 'deleted todo'
   end
 
   private
